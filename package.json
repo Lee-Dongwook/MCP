@@ -1,0 +1,68 @@
+{
+  "name": "mcp",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "mcp": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup --dts",
+    "type-check": "tsc --noEmit",
+    "test": "jest",
+    "start": "node dist/cli.js",
+    "start:cli": "cross-env NODE_ENV=cli node dist/cli.js",
+    "start:http": "node dist/cli.js",
+    "dev": "cross-env NODE_ENV=development tsup --watch",
+    "dev:cli": "cross-env NODE_ENV=development tsup --watch -- --stdio",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "inspect": "pnpx @modelcontextprotocol/inspector",
+    "prepack": "pnpm build",
+    "changeset": "changeset add",
+    "version": "changeset version && git add -A",
+    "beta:start": "changeset pre enter beta",
+    "beta:end": "changeset pre exit",
+    "beta:version": "changeset version && pnpm install --lockfile-only",
+    "beta:publish": "changeset publish",
+    "prerelease": "pnpm build",
+    "release": "changeset publish && git push --follow-tags",
+    "pub:release": "pnpm build && npm publish",
+    "pub:release:beta": "pnpm build && npm publish --tag beta"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@figma/rest-api-spec": "^0.32.0",
+    "@modelcontextprotocol/sdk": "^1.13.1",
+    "@types/yargs": "^17.0.33",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "js-yaml": "^4.1.0",
+    "remeda": "^2.23.1",
+    "yargs": "^18.0.0",
+    "zod": "^3.25.67"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.29.5",
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^24.0.4",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^10.1.5",
+    "jest": "^30.0.3",
+    "prettier": "^3.6.1",
+    "ts-jest": "^29.4.0",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}
